@@ -18,7 +18,7 @@ namespace ConsoleAppInventory
 
         static void Main(string[] args)
         {
-
+            Carregar();
 
             bool escSair = false;
             while (escSair == false)
@@ -37,7 +37,7 @@ namespace ConsoleAppInventory
                     switch (escolha)
                     {
                         case Menu.Listar:
-                            Console.WriteLine("Listar");
+                            Listagem();
                             break;
                         case Menu.Adicionar:
                             Cadastro();
@@ -65,6 +65,16 @@ namespace ConsoleAppInventory
             }
         }
 
+        static void Listagem()
+        {
+            Console.WriteLine("Lista de produtos");
+            Console.WriteLine("=================");
+            foreach (IEstoque produto in produtos)
+            {
+                produto.Exibir();
+            }
+            Console.ReadLine();
+        }
         static void Cadastro()
         {
             Console.WriteLine("Cadastro de Produto");
@@ -141,6 +151,28 @@ namespace ConsoleAppInventory
             encoder.Serialize(stream, produtos);
 
             stream.Close();
+        }
+
+        static void Carregar()
+        {
+            FileStream stream = new FileStream("produtos.dat", FileMode.OpenOrCreate);
+            BinaryFormatter encoder = new BinaryFormatter();
+
+            try
+            {
+                produtos = (List<IEstoque>)encoder.Deserialize(stream);
+
+                if (produtos == null)
+                {
+                    produtos = new List<IEstoque>();
+                }
+            }
+            catch (Exception e)
+            {
+                produtos = new List<IEstoque>();
+            }
+            
+            
         }
     }
 }
