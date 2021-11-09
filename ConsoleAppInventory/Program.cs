@@ -43,7 +43,7 @@ namespace ConsoleAppInventory
                             Cadastro();
                             break;
                         case Menu.Remover:
-                            Console.WriteLine("Remover");
+                            Remover();
                             break;
                         case Menu.Entrada:
                             Console.WriteLine("Entrada");
@@ -69,12 +69,28 @@ namespace ConsoleAppInventory
         {
             Console.WriteLine("Lista de produtos");
             Console.WriteLine("=================");
+            int i = 0;
             foreach (IEstoque produto in produtos)
             {
+                Console.WriteLine("ID: " + i);
                 produto.Exibir();
+                i++;
             }
             Console.ReadLine();
         }
+
+        static void Remover()
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja remover: ");
+            int id = int.Parse(Console.ReadLine());
+            if(id >= 0 && id < produtos.Count)
+            {
+                produtos.RemoveAt(id);
+                Salvar();
+            }
+        }
+
         static void Cadastro()
         {
             Console.WriteLine("Cadastro de Produto");
