@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -46,10 +43,10 @@ namespace ConsoleAppInventory
                             Remover();
                             break;
                         case Menu.Entrada:
-                            Console.WriteLine("Entrada");
+                            Entrada();
                             break;
                         case Menu.Saida:
-                            Console.WriteLine("Saida");
+                            Saida();
                             break;
                         case Menu.Sair:
                             escSair = true;
@@ -84,12 +81,37 @@ namespace ConsoleAppInventory
             Listagem();
             Console.WriteLine("Digite o ID do produto que deseja remover: ");
             int id = int.Parse(Console.ReadLine());
-            if(id >= 0 && id < produtos.Count)
+            if (id >= 0 && id < produtos.Count)
             {
                 produtos.RemoveAt(id);
                 Salvar();
             }
         }
+
+        static void Entrada()
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja dar entrada: ");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].AdicionarEntrada();
+                Salvar();
+            }
+        }
+
+        static void Saida()
+        {
+            Listagem();
+            Console.WriteLine("Digite o ID do produto que deseja dar baixa: ");
+            int id = int.Parse(Console.ReadLine());
+            if (id >= 0 && id < produtos.Count)
+            {
+                produtos[id].AdicionarSaida();
+                Salvar();
+            }
+        }
+
 
         static void Cadastro()
         {

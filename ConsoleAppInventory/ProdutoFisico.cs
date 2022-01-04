@@ -17,17 +17,28 @@ namespace ConsoleAppInventory
         {
             this.nome = nome;
             this.preco = preco;
-            this.frete = frete;
+            this.frete = frete; 
         }
 
         public void AdicionarEntrada()
         {
-            
+            Console.WriteLine($"Adicionar entrada no estoque do produto {nome}");
+            Console.WriteLine($"Digite a quantidade que você quer dar entrada: ");
+            int entrada = int.Parse(Console.ReadLine());
+            estoque += entrada;
+            Console.WriteLine("Entrada registrada");
+            Console.ReadLine();
+
         }
 
         public void AdicionarSaida()
         {
-            
+            Console.WriteLine($"Adicionar saida no estoque do produto {nome}");
+            Console.WriteLine($"Digite a quantidade que você quer dar baixa: ");
+            int entrada = int.Parse(Console.ReadLine());
+            estoque -= entrada;
+            Console.WriteLine("Saída registrada");
+            Console.ReadLine();
         }
 
         public void Exibir()

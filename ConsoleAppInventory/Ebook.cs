@@ -22,12 +22,18 @@ namespace ConsoleAppInventory
 
         public void AdicionarEntrada()
         {
-            
+            Console.WriteLine("Não é m=necessário dar entrada neste produto.");
+            Console.ReadLine();
         }
 
         public void AdicionarSaida()
         {
-            
+            Console.WriteLine($"Adicionar vendas no E-book {nome}");
+            Console.WriteLine($"Digite a quantidade de vendas que você quer dar entrada: ");
+            int entrada = int.Parse(Console.ReadLine());
+            vendas += entrada;
+            Console.WriteLine("Entrada registrada");
+            Console.ReadLine();
         }
 
         public void Exibir()
